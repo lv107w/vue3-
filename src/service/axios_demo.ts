@@ -1,4 +1,4 @@
-import axios from 'axios'
+/* import axios from 'axios'
 
 axios
   .get('http://httpbin.org/get', {
@@ -10,3 +10,4 @@ axios
   .then((res) => {
     console.log(res.data)
   })
+ */
