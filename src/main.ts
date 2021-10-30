@@ -40,7 +40,7 @@ lvRequest1
         return res
       }
     },
-    showLoading: false
+    showLoading: true
   })
   .then((res) => {
     console.log(res.args + '123')

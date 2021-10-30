@@ -62,7 +62,7 @@ class LVRequest {
     )
   }
 
-  request<T>(config: LVRequestConfig): Promise<T> {
+  request<T>(config: LVRequestConfig<T>): Promise<T> {
     return new Promise((reslove, reject) => {
       //查看new的实例传过来的config有没有拦截器，如果有就把config做一层转换
       if (config.interceptors?.requestInterceptor) {
@@ -78,7 +78,7 @@ class LVRequest {
         .then((res) => {
           //查看new的实例传过来的config有没有拦截器，如果有就把res做一层转换
           if (config.interceptors?.responseInterceptor) {
-            // res = config.interceptors.responseInterceptor(res)
+            res = config.interceptors.responseInterceptor(res)
           }
           console.log(res)
           //将showLoading设置为true，这样不会影响下一个请求
@@ -95,19 +95,19 @@ class LVRequest {
     })
   }
 
-  get<T>(config: LVRequestConfig): Promise<T> {
+  get<T>(config: LVRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: LVRequestConfig): Promise<T> {
+  post<T>(config: LVRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: LVRequestConfig): Promise<T> {
+  delete<T>(config: LVRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: LVRequestConfig): Promise<T> {
+  patch<T>(config: LVRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
